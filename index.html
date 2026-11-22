@@ -1,0 +1,2311 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amornpop Suetong — Digital Marketing &amp; AI Web Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 86px;
+    }
+    section[id], footer[id], #projects, #experience, #tools, #academy, #contact {
+      scroll-margin-top: 86px;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #FAFAFA;
+      background-image: radial-gradient(rgba(0, 0, 0, 0.075) 1px, transparent 1px);
+      background-size: 24px 24px;
+      color: #0D0F17;
+      overflow-x: hidden;
+      line-height: 1.5;
+      position: relative;
+    }
+    .font-bricolage {
+      font-family: 'Bricolage Grotesque', sans-serif;
+    }
+
+    /* Ambient Hero Glow */
+    .ambient-glow {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1000px;
+      height: 520px;
+      background: radial-gradient(ellipse at top, rgba(37, 99, 235, 0.05) 0%, rgba(124, 58, 237, 0.03) 40%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    /* Interactive Cursor Spotlight (helloabdullah.com polish) */
+    .cursor-spotlight {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      background: radial-gradient(650px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(37, 99, 235, 0.04), transparent 50%);
+      transition: opacity 0.3s;
+    }
+
+    /* Top Bar Sticky & Floating Capsule Nav (Exact helloabdullah.com style) */
+    .top-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      width: 100%;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(250, 250, 250, 0.88);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.7);
+      transition: all 0.2s ease;
+    }
+    .top-nav-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.04em;
+      color: #0D0F17;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-brand:hover {
+      opacity: 0.9;
+    }
+    .nav-brand-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #16A34A;
+      box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.2);
+    }
+
+    /* Floating Capsule Nav (Exact helloabdullah.com layout) */
+    .floating-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 6px;
+      border-radius: 9999px;
+      background: #F3F4F6;
+      border: 1px solid #E5E7EB;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    }
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #64748B;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .nav-pill:hover {
+      color: #0D0F17;
+      background: rgba(255, 255, 255, 0.65);
+    }
+    .nav-pill.active {
+      background: #FFFFFF;
+      color: #0D0F17;
+      font-weight: 600;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+    .nav-pill svg {
+      width: 14px;
+      height: 14px;
+      opacity: 0.85;
+    }
+
+    /* Right Side Action Button */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 16px;
+      border-radius: 9999px;
+      background: #0D0F17;
+      color: #FFFFFF;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(13, 15, 23, 0.12);
+    }
+    .nav-cta-btn:hover {
+      background: #1E2330;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(13, 15, 23, 0.2);
+    }
+
+    @media (max-width: 820px) {
+      .floating-nav {
+        display: none;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      z-index: 10;
+      max-width: 920px;
+      margin: 3.5rem auto 4.5rem;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      color: #4B5563;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #16A34A;
+      box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.4); }
+      70% { box-shadow: 0 0 0 6px rgba(22, 163, 74, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+    }
+    .hero-title {
+      font-size: clamp(44px, 8.5vw, 92px);
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: #0D0F17;
+    }
+    .hero-subtitle {
+      font-size: clamp(16px, 2.2vw, 21px);
+      color: #64748B;
+      line-height: 1.6;
+      max-width: 680px;
+      margin: 0 auto 2.5rem;
+    }
+    .cta-row {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn-dark {
+      background: #0D0F17;
+      color: #FFFFFF;
+      padding: 0.85rem 1.75rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 14px rgba(13, 15, 23, 0.15);
+    }
+    .btn-dark:hover {
+      transform: translateY(-2px);
+      background: #1E2330;
+      box-shadow: 0 8px 20px rgba(13, 15, 23, 0.25);
+    }
+    .btn-light {
+      background: #FFFFFF;
+      border: 1px solid #D1D5DB;
+      color: #0D0F17;
+      padding: 0.85rem 1.75rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.2s, border-color 0.2s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+    .btn-light:hover {
+      transform: translateY(-2px);
+      border-color: #0D0F17;
+    }
+
+    /* Section Headers */
+    .section-header {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 3rem;
+      padding: 0 1.5rem;
+    }
+    .section-title {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+      color: #0D0F17;
+    }
+    .section-subtitle {
+      font-size: 1rem;
+      color: #64748B;
+    }
+
+    /* SINGLE ROW MARQUEE CAROUSEL (helloabdullah.com style) */
+    .marquee-container {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      overflow: hidden;
+      margin-bottom: 6.5rem;
+      padding: 1rem 0;
+    }
+    .gradient-left {
+      position: absolute;
+      top: 0; bottom: 0; left: 0;
+      width: 140px;
+      background: linear-gradient(to right, #FAFAFA 20%, rgba(250, 250, 250, 0));
+      z-index: 10;
+      pointer-events: none;
+    }
+    .gradient-right {
+      position: absolute;
+      top: 0; bottom: 0; right: 0;
+      width: 140px;
+      background: linear-gradient(to left, #FAFAFA 20%, rgba(250, 250, 250, 0));
+      z-index: 10;
+      pointer-events: none;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 1.5rem;
+      width: max-content;
+      animation: marquee 45s linear infinite;
+    }
+    .marquee-container:hover .marquee-track {
+      animation-play-state: paused;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .project-card {
+      width: 380px;
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      border-radius: 16px;
+      overflow: hidden;
+      flex-shrink: 0;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 32px rgba(0,0,0,0.08);
+      border-color: #CBD5E1;
+    }
+    .card-preview {
+      height: 220px;
+      background: #F1F5F9;
+      border-bottom: 1px solid #F1F5F9;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .project-card:hover .card-preview img {
+      transform: scale(1.04);
+    }
+    .card-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(4px);
+      border: 1px solid #E5E7EB;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #0D0F17;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    }
+    .card-content {
+      padding: 1.5rem;
+    }
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.35rem;
+      color: #0D0F17;
+    }
+    .card-desc {
+      font-size: 0.85rem;
+      color: #64748B;
+      line-height: 1.55;
+      margin-bottom: 1.25rem;
+    }
+    .card-link {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #0D0F17;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: gap 0.2s ease;
+    }
+    .project-card:hover .card-link {
+      gap: 8px;
+      color: #2563EB;
+    }
+
+    /* CAREER EXPERIENCE & ADS SECTION (3-Column Layout: 3 Rows x 3 Columns) */
+    .career-experience-section {
+      position: relative;
+      z-index: 10;
+      max-width: 1320px;
+      margin: 0 auto 6.5rem;
+      padding: 0 1.5rem;
+    }
+    .exp-filter-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 2.75rem;
+    }
+    .exp-filter-btn {
+      padding: 8px 20px;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid #E5E7EB;
+      background: #FFFFFF;
+      color: #4B5563;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    .exp-filter-btn:hover {
+      background: #F3F4F6;
+      color: #0D0F17;
+    }
+    .exp-filter-btn.active {
+      background: #0D0F17;
+      color: #FFFFFF;
+      border-color: #0D0F17;
+      font-weight: 600;
+    }
+
+    .exp-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    @media (max-width: 1100px) {
+      .exp-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 700px) {
+      .exp-cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .exp-card-item {
+      background: #FFFFFF;
+      border-radius: 24px;
+      padding: 2rem 1.65rem;
+      border: 1px solid #E5E7EB;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .exp-card-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.06);
+      border-color: #CBD5E1;
+    }
+    .exp-card-inner {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+    }
+    .exp-brand-row {
+      margin-bottom: 1rem;
+    }
+    .exp-domain-badge {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #0D0F17;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .exp-role-heading {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: #0D0F17;
+      margin-bottom: 0.45rem;
+      letter-spacing: -0.02em;
+      line-height: 1.35;
+    }
+    .exp-meta-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 1.15rem;
+      font-size: 0.82rem;
+    }
+    .exp-company-name {
+      font-weight: 600;
+      color: #0D0F17;
+    }
+    .exp-meta-pills {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: #64748B;
+    }
+    .exp-meta-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.82rem;
+    }
+    .exp-narrative-text {
+      font-size: 0.88rem;
+      color: #64748B;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    .exp-narrative-text strong {
+      color: #0D0F17;
+      font-weight: 600;
+    }
+
+    .exp-clients-footer {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding-top: 1.25rem;
+      border-top: 1px solid #F1F5F9;
+    }
+    .exp-clients-label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #0D0F17;
+      flex-shrink: 0;
+    }
+    .exp-client-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .exp-client-brand-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 1.25rem;
+    }
+    .exp-client-brand-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .exp-client-brand-name {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #0D0F17;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .exp-client-industry-pill {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #64748B;
+      display: inline-block;
+      margin-top: 2px;
+    }
+
+    .exp-client-badge-frame {
+      height: 44px;
+      min-width: 52px;
+      padding: 4px 10px;
+      border-radius: 10px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .exp-client-badge-frame:hover {
+      transform: translateY(-2px);
+      border-color: #0D0F17;
+    }
+    .exp-client-badge-frame img {
+      max-height: 28px;
+      max-width: 105px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+    .exp-client-badge-frame.dark-frame {
+      background: #33312E;
+      border-color: #44413D;
+    }
+    .exp-client-badge-frame.dark-frame-kvik {
+      background: #000000;
+      border-color: #1F2937;
+    }
+    .exp-client-badge-frame.warm-frame {
+      background: #F8F4EB;
+      border-color: #EBDDC6;
+    }
+
+    /* RADIAL TOOLS & CAPABILITIES SECTION (Exact helloabdullah.com layout) */
+    .tools-radial-section {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto 6.5rem;
+      padding: 0 1.5rem;
+    }
+    .tools-radial-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 2.5rem 1rem;
+    }
+    .stack-cluster {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      transition: transform 0.25s ease;
+    }
+    .stack-cluster:hover {
+      transform: translateY(-2px);
+    }
+    .stack-capsule {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 18px;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+    .capsule-blue {
+      background: #EFF6FF;
+      color: #1D4ED8;
+      border: 1px solid #DBEAFE;
+    }
+    .capsule-green {
+      background: #F0FDF4;
+      color: #15803D;
+      border: 1px solid #DCFCE7;
+    }
+    .capsule-purple {
+      background: #FAF5FF;
+      color: #7E22CE;
+      border: 1px solid #F3E8FF;
+    }
+    .capsule-amber {
+      background: #FFFBEB;
+      color: #B45309;
+      border: 1px solid #FEF3C7;
+    }
+    .stack-icons-dock {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #FFFFFF;
+      padding: 6px 12px;
+      border-radius: 9999px;
+      border: 1px solid #E5E7EB;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .tool-dock-item {
+      position: relative;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #F8FAFC;
+      border: 1px solid #F1F5F9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s, background 0.2s, border-color 0.2s;
+    }
+    .tool-dock-item:hover {
+      transform: scale(1.18) translateY(-4px);
+      background: #FFFFFF;
+      border-color: #CBD5E1;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+      z-index: 20;
+    }
+    .tool-dock-item svg {
+      width: 22px;
+      height: 22px;
+    }
+    .tool-dock-item .tooltip {
+      position: absolute;
+      bottom: -32px;
+      left: 50%;
+      transform: translateX(-50%) scale(0.9);
+      background: #0D0F17;
+      color: #FFFFFF;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      z-index: 30;
+    }
+    .tool-dock-item:hover .tooltip {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
+    .tools-top-cluster {
+      margin-bottom: 2rem;
+    }
+    .tools-middle-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3.5rem;
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .tools-center-text {
+      text-align: center;
+      max-width: 440px;
+      padding: 0 1rem;
+      flex-shrink: 0;
+    }
+    .tools-main-title {
+      font-size: clamp(32px, 4.5vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin-bottom: 0.75rem;
+      color: #0D0F17;
+    }
+    .tools-main-desc {
+      font-size: 0.95rem;
+      color: #64748B;
+      line-height: 1.55;
+    }
+    .tools-bottom-cluster {
+      margin-top: 2rem;
+    }
+    @media (max-width: 960px) {
+      .tools-middle-row {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .tools-center-text {
+        order: -1;
+        margin-bottom: 1rem;
+      }
+      .tools-top-cluster {
+        margin-bottom: 1.5rem;
+      }
+      .tools-bottom-cluster {
+        margin-top: 1.5rem;
+      }
+    }
+    
+    /* Academy Section */
+    #academy {
+      max-width: 960px;
+      margin: 0 auto 6.5rem;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 10;
+    }
+    .academy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+    .academy-card {
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      border-radius: 20px;
+      padding: 1.75rem;
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .academy-card:hover {
+      transform: translateY(-3px);
+      border-color: #CBD5E1;
+    }
+    .academy-logo-wrap {
+      width: 68px;
+      height: 68px;
+      border-radius: 14px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+    }
+    .academy-logo-img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .academy-details h4 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #0D0F17;
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.02em;
+    }
+    .academy-details p {
+      font-size: 0.85rem;
+      color: #64748B;
+      line-height: 1.45;
+    }
+    .academy-year {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #2563EB;
+      margin-top: 0.4rem;
+    }
+
+    /* Footer / Contact */
+    .footer {
+      position: relative;
+      z-index: 10;
+      background: #0D0F17;
+      color: #FFFFFF;
+      padding: 5.5rem 1.5rem 4rem;
+      text-align: center;
+      border-top: 1px solid #1E2330;
+    }
+    .footer-title {
+      font-size: clamp(32px, 5.5vw, 56px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 1rem;
+    }
+    .footer-sub {
+      color: #94A3B8;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      line-height: 1.6;
+    }
+    .contact-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3.5rem;
+    }
+    .contact-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #FFFFFF;
+      padding: 0.85rem 1.6rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.2s, transform 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+    .contact-btn:hover {
+      background: #FFFFFF;
+      color: #0D0F17;
+      border-color: #FFFFFF;
+      transform: translateY(-2px);
+    }
+    .copy-icon-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      color: inherit;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-left: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.15s;
+    }
+    .contact-btn:hover .copy-icon-btn {
+      background: rgba(13, 15, 23, 0.1);
+      color: #0D0F17;
+    }
+    .footer-bottom {
+      font-size: 0.85rem;
+      color: #64748B;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 2rem;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #0D0F17;
+      color: #FFFFFF;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      border: 1px solid #334155;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+      z-index: 100;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  
+    /* INFINITE TEXT TICKER MARQUEE (Exact helloabdullah.com style right before footer) */
+    .ticker-banner-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-top: 1px solid #E5E7EB;
+      border-bottom: 1px solid #E5E7EB;
+      background: #FAFAFA;
+      padding: 1.75rem 0;
+      margin-top: 2rem;
+      margin-bottom: 0;
+      z-index: 10;
+    }
+    .ticker-fade-left {
+      position: absolute;
+      top: 0; bottom: 0; left: 0;
+      width: 150px;
+      background: linear-gradient(to right, #FAFAFA 30%, rgba(250, 250, 250, 0));
+      z-index: 10;
+      pointer-events: none;
+    }
+    .ticker-fade-right {
+      position: absolute;
+      top: 0; bottom: 0; right: 0;
+      width: 150px;
+      background: linear-gradient(to left, #FAFAFA 30%, rgba(250, 250, 250, 0));
+      z-index: 10;
+      pointer-events: none;
+    }
+    .ticker-track {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      width: max-content;
+      animation: tickerMarquee 40s linear infinite;
+    }
+    .ticker-banner-container:hover .ticker-track {
+      animation-play-state: paused;
+    }
+    @keyframes tickerMarquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 36px;
+      flex-shrink: 0;
+    }
+    .ticker-word {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 500;
+      color: #64748B;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      transition: color 0.2s ease;
+      cursor: default;
+    }
+    .ticker-word:hover {
+      color: #0D0F17;
+    }
+    .ticker-star {
+      width: 14px;
+      height: 14px;
+      color: #94A3B8;
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    /* FLOATING CHAT WIDGET BUTTON (Exact match to uploaded image) */
+    .floating-chat-trigger {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #0D0F17;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 28px rgba(13, 15, 23, 0.28), 0 2px 8px rgba(13, 15, 23, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+      z-index: 99;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.2s ease;
+      outline: none;
+    }
+    .floating-chat-trigger:hover {
+      transform: scale(1.08) translateY(-2px);
+      background: #1E2330;
+      box-shadow: 0 14px 34px rgba(13, 15, 23, 0.35);
+    }
+    .floating-chat-trigger:active {
+      transform: scale(0.95);
+    }
+    .floating-chat-trigger svg {
+      width: 28px;
+      height: 28px;
+      transition: transform 0.2s ease;
+    }
+
+    /* Floating Contact Card Popup */
+    .chat-popup-card {
+      position: fixed;
+      bottom: 92px;
+      right: 24px;
+      width: 310px;
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      border-radius: 20px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.14), 0 4px 12px rgba(0, 0, 0, 0.05);
+      z-index: 99;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(16px) scale(0.96);
+      transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .chat-popup-card.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+    .chat-popup-header {
+      background: #0D0F17;
+      color: #FFFFFF;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .chat-header-identity {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .chat-status-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #16A34A;
+      box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.3);
+    }
+    .chat-header-name {
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: -0.01em;
+    }
+    .chat-close-btn {
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      color: #FFFFFF;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      line-height: 1;
+      transition: background 0.15s;
+    }
+    .chat-close-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+    .chat-popup-body {
+      padding: 1.25rem;
+    }
+    .chat-greeting {
+      font-size: 0.85rem;
+      color: #64748B;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+    .chat-channel-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      margin-bottom: 8px;
+      transition: transform 0.15s, background 0.15s, border-color 0.15s;
+      border: 1px solid #E5E7EB;
+    }
+    .chat-channel-link:hover {
+      transform: translateY(-1px);
+    }
+    .chat-channel-link.line-btn {
+      background: #F0FDF4;
+      border-color: #DCFCE7;
+      color: #15803D;
+    }
+    .chat-channel-link.line-btn:hover {
+      background: #DCFCE7;
+    }
+    .chat-channel-link.email-btn {
+      background: #EFF6FF;
+      border-color: #DBEAFE;
+      color: #1D4ED8;
+    }
+    .chat-channel-link.email-btn:hover {
+      background: #DBEAFE;
+    }
+    .chat-channel-title {
+      font-weight: 700;
+      font-size: 0.82rem;
+      display: block;
+    }
+    .chat-channel-sub {
+      font-size: 0.72rem;
+      opacity: 0.8;
+      display: block;
+    }
+</style>
+</head>
+<body>
+
+  <!-- Ambient background glow & Cursor spotlight -->
+  <div class="ambient-glow"></div>
+  <div class="cursor-spotlight" id="cursorSpotlight"></div>
+
+  <!-- Top Header & Floating Capsule Nav (Exact helloabdullah.com layout) -->
+  <header class="top-header">
+    <div class="top-nav-container">
+      
+      <!-- Brand Logo with Status Dot -->
+      <a href="#" class="nav-brand font-bricolage">
+        <span class="nav-brand-dot"></span>
+        <span>AMORNPOP SUETONG</span>
+      </a>
+
+      <!-- Floating Capsule Navigation -->
+      <nav class="floating-nav" aria-label="Main Navigation">
+        <a href="#projects" class="nav-pill" id="navPillProjects">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+          <span>Recent Projects</span>
+        </a>
+        <a href="#experience" class="nav-pill" id="navPillExperience">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" y1="12" x2="8" y2="12"></line></svg>
+          <span>Ad Campaigns</span>
+        </a>
+        <a href="#tools" class="nav-pill" id="navPillTools">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <span>Tools</span>
+        </a>
+        <a href="#academy" class="nav-pill" id="navPillAcademy">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+          <span>Academic</span>
+        </a>
+      </nav>
+
+      <!-- Right Side CTA: Get in Touch -->
+      <div class="nav-actions">
+        <a href="#contact" class="nav-cta-btn" id="navCtaBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <span>Get in Touch</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="status-badge">
+      <span class="status-dot"></span>
+      Phuket, Thailand
+    </div>
+    <h1 class="hero-title font-Shantell Sans">
+      Amornpop Suetong
+    </h1>
+    <p class="hero-subtitle">
+      Digital Marketing Specialist &amp; AI-Driven Web Builder based in Phuket, Thailand. Blending high-intent performance advertising with fast, modern web applications.
+    </p>
+    <div class="cta-row">
+      <a href="#projects" class="btn-dark">
+        Explore Web Projects
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"></path></svg>
+      </a>
+      <a href="#experience" class="btn-light">View Ad Campaigns</a>
+      <a href="#contact" class="btn-light">Get in Touch</a>
+    </div>                                                                                                                              
+  </header>
+
+  <!-- SINGLE ROW MARQUEE SECTION: 7 REAL PROJECTS -->
+  <section id="projects">
+    <div class="section-header">
+      <h2 class="section-title font-bricolage">Recent Projects</h2>
+      <p class="section-subtitle">Real web applications built and deployed using AI workflows.</p>
+    </div>
+
+    <div class="marquee-container">
+      <div class="gradient-left"></div>
+      <div class="gradient-right"></div>
+      
+      <div class="marquee-track">
+        
+        <!-- Card 1: Dental Space -->
+        <a href="https://dentalspace.takemy.ai/" target="_blank" rel="noopener noreferrer" class="project-card">
+          <div class="card-preview">
+            <span class="card-badge">Healthcare</span>
+            <img src="assets/images/projects/dentalspace.jpg" alt="Dental Space Clinic" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title font-bricolage">Dental Space Clinic</h3>
+            <p class="card-desc">Dental clinic web application with doctor directory, service packages, and direct booking.</p>
+            <span class="card-link">View Live Website <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></span>
+          </div>
+        </a>
+
+        <!-- Card 2: The Regent Phuket -->
+        <a href="https://regent.phuketlands.com/" target="_blank" rel="noopener noreferrer" class="project-card">
+          <div class="card-preview">
+            <span class="card-badge">Luxury Real Estate</span>
+            <img src="assets/images/projects/regent.jpg" alt="The Regent Phuket" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title font-bricolage">The Regent Phuket</h3>
+            <p class="card-desc">Luxury villa showcase in Phuket highlighting floorplans, master suites, and investor specs.</p>
+            <span class="card-link">View Live Website <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></span>
+          </div>
+        </a>
+
+        <!-- Card 3: Ferry Andaman -->
+        <a href="https://ferry.takemy.ai/" target="_blank" rel="noopener noreferrer" class="project-card">
+          <div class="card-preview">
+            <span class="card-badge">Travel &amp; Booking</span>
+            <img src="assets/images/projects/ferry.jpg" alt="Ferry Andaman Travel" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title font-bricolage">Ferry Andaman Travel</h3>
+            <p class="card-desc">Ferry timetable and Andaman sea island transit platform designed for on-the-go mobile travelers.</p>
+            <span class="card-link">View Live Website <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></span>
+          </div>
+        </a>
+
+        <!-- Card 4: Somkuan Accounting & Tax -->
+        <a href="https://somkuan.phuketlands.com/" target="_blank" rel="noopener noreferrer" class="project-card">
+          <div class="card-preview">
+            <span class="card-badge">Accounting &amp; Tax</span>
+            <img src="assets/images/projects/somkuan.jpg" alt="Somkuan Accounting &amp; Tax" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title font-bricolage">Somkuan Accounting &amp; Tax</h3>
+            <p class="card-desc">Certified quality accounting firm in Phuket offering corporate tax, bookkeeping, and business registration.</p>
+            <span class="card-link">View Live Website <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></span>
+          </div>
+        </a>
+
+        <!-- Card 5: WAS Architecture Studio -->
+        <a href="https://was.takemy.ai" target="_blank" rel="noopener noreferrer" class="project-card">
+          <div class="card-preview">
+            <span class="card-badge">Architecture Studio</span>
+            <img src="assets/images/projects/was.jpg" alt="WAS Group Studio" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title font-bricolage">WAS Group Studio</h3>
+            <p class="card-desc">Architecture and interior design studio portfolio highlighting residential projects in Phuket.</p>
+            <span class="card-link">View Live Website <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></span>
+          </div>
+        </a>
+
+        <!-- Card 6: Kim's Massage & Spa -->
+        <a href="https://kim.takemy.ai/" target="_blank" rel="noopener noreferrer" class="project-card">
+          <div class="card-preview">
+            <span class="card-badge">Wellness &amp; Spa</span>
+            <img src="assets/images/projects/kim.jpg" alt="Kim's Massage &amp; Spa" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title font-bricolage">Kim's Massage &amp; Spa</h3>
+            <p class="card-desc">Premier Thai massage and wellness spa destination website with treatment menus.</p>
+            <span class="card-link">View Live Website <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></span>
+          </div>
+        </a>
+
+        <!-- Card 7: PMA Apparel -->
+        <a href="https://pma.takemy.ai/" target="_blank" rel="noopener noreferrer" class="project-card">
+          <div class="card-preview">
+            <span class="card-badge">Fashion &amp; Retail</span>
+            <img src="assets/images/projects/pma.jpg" alt="PMA Apparel" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title font-bricolage">PMA Apparel</h3>
+            <p class="card-desc">Apparel brand catalog and lifestyle lookbook showcasing custom garments.</p>
+            <span class="card-link">View Live Website <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></span>
+          </div>
+        </a>
+
+        <!-- Seamless Duplicate Set (Cards 1 to 7 Repeated) -->
+        <a href="https://dentalspace.takemy.ai/" target="_blank" rel="noopener noreferrer" class="project-card">
+          <div class="card-preview">
+            <span class="card-badge">Healthcare</span>
+            <img src="assets/images/projects/dentalspace.jpg" alt="Dental Space Clinic" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title font-bricolage">Dental Space Clinic</h3>
+            <p class="card-desc">Dental clinic web application with doctor directory, service packages, and direct booking.</p>
+            <span class="card-link">View Live Website <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></span>
+          </div>
+        </a>
+
+        <a href="https://regent.phuketlands.com/" target="_blank" rel="noopener noreferrer" class="project-card">
+          <div class="card-preview">
+            <span class="card-badge">Luxury Real Estate</span>
+            <img src="assets/images/projects/regent.jpg" alt="The Regent Phuket" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title font-bricolage">The Regent Phuket</h3>
+            <p class="card-desc">Luxury villa showcase in Phuket highlighting floorplans, master suites, and investor specs.</p>
+            <span class="card-link">View Live Website <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></span>
+          </div>
+        </a>
+
+        <a href="https://ferry.takemy.ai/" target="_blank" rel="noopener noreferrer" class="project-card">
+          <div class="card-preview">
+            <span class="card-badge">Travel &amp; Booking</span>
+            <img src="assets/images/projects/ferry.jpg" alt="Ferry Andaman Travel" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title font-bricolage">Ferry Andaman Travel</h3>
+            <p class="card-desc">Ferry timetable and Andaman sea island transit platform designed for on-the-go mobile travelers.</p>
+            <span class="card-link">View Live Website <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></span>
+          </div>
+        </a>
+
+        <a href="https://somkuan.phuketlands.com/" target="_blank" rel="noopener noreferrer" class="project-card">
+          <div class="card-preview">
+            <span class="card-badge">Accounting &amp; Tax</span>
+            <img src="assets/images/projects/somkuan.jpg" alt="Somkuan Accounting &amp; Tax" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title font-bricolage">Somkuan Accounting &amp; Tax</h3>
+            <p class="card-desc">Certified quality accounting firm in Phuket offering corporate tax, bookkeeping, and business registration.</p>
+            <span class="card-link">View Live Website <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></span>
+          </div>
+        </a>
+
+        <a href="https://was.takemy.ai" target="_blank" rel="noopener noreferrer" class="project-card">
+          <div class="card-preview">
+            <span class="card-badge">Architecture Studio</span>
+            <img src="assets/images/projects/was.jpg" alt="WAS Group Studio" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title font-bricolage">WAS Group Studio</h3>
+            <p class="card-desc">Architecture and interior design studio portfolio highlighting residential projects in Phuket.</p>
+            <span class="card-link">View Live Website <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></span>
+          </div>
+        </a>
+
+        <a href="https://kim.takemy.ai/" target="_blank" rel="noopener noreferrer" class="project-card">
+          <div class="card-preview">
+            <span class="card-badge">Wellness &amp; Spa</span>
+            <img src="assets/images/projects/kim.jpg" alt="Kim's Massage &amp; Spa" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title font-bricolage">Kim's Massage &amp; Spa</h3>
+            <p class="card-desc">Premier Thai massage and wellness spa destination website with treatment menus.</p>
+            <span class="card-link">View Live Website <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></span>
+          </div>
+        </a>
+
+        <a href="https://pma.takemy.ai/" target="_blank" rel="noopener noreferrer" class="project-card">
+          <div class="card-preview">
+            <span class="card-badge">Fashion &amp; Retail</span>
+            <img src="assets/images/projects/pma.jpg" alt="PMA Apparel" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title font-bricolage">PMA Apparel</h3>
+            <p class="card-desc">Apparel brand catalog and lifestyle lookbook showcasing custom garments.</p>
+            <span class="card-link">View Live Website <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Career Experience & Client Roster Section (Exact helloabdullah.com 2x2 Card Grid) -->
+  <section id="experience" class="career-experience-section">
+    <div class="section-header">
+      <h2 class="section-title font-bricolage">Career Experience</h2>
+      <p class="section-subtitle">Real performance ad campaigns and growth strategies executed in Phuket &amp; Pattaya.</p>
+    </div>
+
+    <!-- Filter Buttons (Exact helloabdullah.com style) -->
+    <div class="exp-filter-row">
+      <button class="exp-filter-btn active" onclick="filterExp(event, 'all')">All</button>
+      <button class="exp-filter-btn" onclick="filterExp(event, 'real-estate')">Real Estate</button>
+      <button class="exp-filter-btn" onclick="filterExp(event, 'retail')">Retail &amp; Living</button>
+      <button class="exp-filter-btn" onclick="filterExp(event, 'healthcare')">Healthcare</button>
+      <button class="exp-filter-btn" onclick="filterExp(event, 'tourism')">Tourism &amp; Lifestyle</button>
+    </div>
+
+    <!-- 2x2 Grid of Spacious Experience Cards (Separated by Client) -->
+    <div class="exp-cards-grid">
+      
+      <!-- Card 1: Amber Chamber Pool Villa -->
+      <div class="exp-card-item" data-category="real-estate">
+        <div class="exp-card-inner">
+          <div class="exp-card-header">
+            <div class="exp-client-brand-top">
+              <div class="exp-client-badge-frame" title="Amber Chamber Pool Villas">
+                <img src="assets/images/clients/amber-chamber.png" alt="Amber Chamber Pool Villas">
+              </div>
+              <div class="exp-client-brand-info">
+                <h3 class="exp-client-brand-name font-bricolage">Amber Chamber</h3>
+                <span class="exp-client-industry-pill font-bricolage">Real Estate &amp; Luxury Pool Villas</span>
+              </div>
+            </div>
+            <div class="exp-role-heading font-bricolage">Performance Marketer &amp; Media Buyer</div>
+            <div class="exp-meta-bar">
+              <span class="exp-company-name">Digital Agency Phuket</span>
+              <div class="exp-meta-pills">
+                <span class="exp-meta-tag">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  Phuket, Thailand
+                </span>
+                <span class="exp-meta-tag">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  2026
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-narrative-text">
+            <p>
+              Managed full-funnel <strong class="font-semibold text-[#0D0F17]">Google High-Intent Search</strong> and <strong class="font-semibold text-[#0D0F17]">Meta Andromeda</strong> lead generation funnels targeting affluent villa investors. Deployed automated Instant Lead Forms driving private showroom consultations.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: The LIVV Pattaya -->
+      <div class="exp-card-item" data-category="real-estate">
+        <div class="exp-card-inner">
+          <div class="exp-card-header">
+            <div class="exp-client-brand-top">
+              <div class="exp-client-badge-frame dark-frame" title="The LIVV Pattaya">
+                <img src="assets/images/clients/the-livv.png" alt="The LIVV Pattaya">
+              </div>
+              <div class="exp-client-brand-info">
+                <h3 class="exp-client-brand-name font-bricolage">The LIVV</h3>
+                <span class="exp-client-industry-pill font-bricolage">Upscale Residences &amp; Pool Villas</span>
+              </div>
+            </div>
+            <div class="exp-role-heading font-bricolage">Meta Ads Strategist &amp; CAPI Specialist</div>
+            <div class="exp-meta-bar">
+              <span class="exp-company-name">Digital Agency Phuket</span>
+              <div class="exp-meta-pills">
+                <span class="exp-meta-tag">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  Pattaya, Chonburi
+                </span>
+                <span class="exp-meta-tag">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  2026
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-narrative-text">
+            <p>
+              Scaled international property buyer acquisition campaigns for premium villas. Implemented <strong class="font-semibold text-[#0D0F17]">Meta Conversion API (CAPI)</strong> and automated CRM lead qualification for overseas buyers and property investors.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Kvik Real Danish Kitchens -->
+      <div class="exp-card-item" data-category="retail">
+        <div class="exp-card-inner">
+          <div class="exp-card-header">
+            <div class="exp-client-brand-top">
+              <div class="exp-client-badge-frame dark-frame-kvik" title="Kvik Real Danish Kitchens">
+                <img src="assets/images/clients/kvik.png" alt="Kvik Real Danish Kitchens">
+              </div>
+              <div class="exp-client-brand-info">
+                <h3 class="exp-client-brand-name font-bricolage">Kvik Phuket</h3>
+                <span class="exp-client-industry-pill font-bricolage">Real Danish Kitchens &amp; Living</span>
+              </div>
+            </div>
+            <div class="exp-role-heading font-bricolage">Digital Ad Strategist &amp; Conversion Specialist</div>
+            <div class="exp-meta-bar">
+              <span class="exp-company-name">Digital Agency Phuket</span>
+              <div class="exp-meta-pills">
+                <span class="exp-meta-tag">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  Phuket, Thailand
+                </span>
+                <span class="exp-meta-tag">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  2026
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-narrative-text">
+            <p>
+              Scaled catalog sales and showroom interior design consultation bookings using <strong class="font-semibold text-[#0D0F17]">Meta CAPI</strong> and high-intent <strong class="font-semibold text-[#0D0F17]">Google Search Ads</strong> capturing European expat homeowners and architects seeking Nordic craftsmanship.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: BOSCH Phuket -->
+      <div class="exp-card-item" data-category="retail">
+        <div class="exp-card-inner">
+          <div class="exp-card-header">
+            <div class="exp-client-brand-top">
+              <div class="exp-client-badge-frame" title="BOSCH Phuket">
+                <img src="assets/images/clients/bosch.png" alt="BOSCH Phuket">
+              </div>
+              <div class="exp-client-brand-info">
+                <h3 class="exp-client-brand-name font-bricolage">BOSCH Phuket</h3>
+                <span class="exp-client-industry-pill font-bricolage">German Engineered Home Appliances</span>
+              </div>
+            </div>
+            <div class="exp-role-heading font-bricolage">Brand Growth &amp; Local Search Specialist</div>
+            <div class="exp-meta-bar">
+              <span class="exp-company-name">Digital Agency Phuket</span>
+              <div class="exp-meta-pills">
+                <span class="exp-meta-tag">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  Phuket, Thailand
+                </span>
+                <span class="exp-meta-tag">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  2026
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-narrative-text">
+            <p>
+              Executed hyper-local <strong class="font-semibold text-[#0D0F17]">Google Search &amp; Display</strong> ad campaigns driving trade consultations with villa developers, contractors, and luxury homeowners upgrading to premium German home appliances.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Dental Space Clinic -->
+      <div class="exp-card-item" data-category="healthcare">
+        <div class="exp-card-inner">
+          <div class="exp-card-header">
+            <div class="exp-client-brand-top">
+              <div class="exp-client-badge-frame" title="Dental Space Clinic">
+                <img src="assets/images/clients/dental-space.png" alt="Dental Space Clinic">
+              </div>
+              <div class="exp-client-brand-info">
+                <h3 class="exp-client-brand-name font-bricolage">Dental Space Clinic</h3>
+                <span class="exp-client-industry-pill font-bricolage">Cosmetic Dentistry &amp; Implants</span>
+              </div>
+            </div>
+            <div class="exp-role-heading font-bricolage">Local SEO &amp; Clinic Growth Specialist</div>
+            <div class="exp-meta-bar">
+              <span class="exp-company-name">Digital Agency Phuket</span>
+              <div class="exp-meta-pills">
+                <span class="exp-meta-tag">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  Phuket, Thailand
+                </span>
+                <span class="exp-meta-tag">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  2026
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-narrative-text">
+            <p>
+              Captured patient inquiries and dental appointment bookings via <strong class="font-semibold text-[#0D0F17]">Google Performance Max (P-Max)</strong> and optimized <strong class="font-semibold text-[#0D0F17]">Google Business Profile (Map Pack)</strong>, driving dental tourism cases from abroad.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: Sainamyen Medical Clinic -->
+      <div class="exp-card-item" data-category="healthcare">
+        <div class="exp-card-inner">
+          <div class="exp-card-header">
+            <div class="exp-client-brand-top">
+              <div class="exp-client-badge-frame" title="Sainamyen International Clinic">
+                <img src="assets/images/clients/sainamyen.png" alt="Sainamyen International Clinic">
+              </div>
+              <div class="exp-client-brand-info">
+                <h3 class="exp-client-brand-name font-bricolage">Sainamyen Clinic</h3>
+                <span class="exp-client-industry-pill font-bricolage">Specialized Medical &amp; Outpatient Care</span>
+              </div>
+            </div>
+            <div class="exp-role-heading font-bricolage">Healthcare Performance Media Buyer</div>
+            <div class="exp-meta-bar">
+              <span class="exp-company-name">Digital Agency Phuket</span>
+              <div class="exp-meta-pills">
+                <span class="exp-meta-tag">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  Patong, Phuket
+                </span>
+                <span class="exp-meta-tag">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  2026
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-narrative-text">
+            <p>
+              Targeted high-intent tourists and local expats in need of urgent clinic visits, doctor consultations, and health checks with real-time <strong class="font-semibold text-[#0D0F17]">Google Search campaigns</strong> and click-to-call mobile conversions.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 7: Chillva Market Phuket -->
+      <div class="exp-card-item" data-category="tourism">
+        <div class="exp-card-inner">
+          <div class="exp-card-header">
+            <div class="exp-client-brand-top">
+              <div class="exp-client-badge-frame dark-frame" title="Chillva Market Phuket">
+                <img src="assets/images/clients/chillva-market.png" alt="Chillva Market Phuket">
+              </div>
+              <div class="exp-client-brand-info">
+                <h3 class="exp-client-brand-name font-bricolage">Chillva Market</h3>
+                <span class="exp-client-industry-pill font-bricolage">Famous Container Night Market</span>
+              </div>
+            </div>
+            <div class="exp-role-heading font-bricolage">Social Video &amp; Event Campaign Specialist</div>
+            <div class="exp-meta-bar">
+              <span class="exp-company-name">Digital Agency Phuket</span>
+              <div class="exp-meta-pills">
+                <span class="exp-meta-tag">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  Phuket, Thailand
+                </span>
+                <span class="exp-meta-tag">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  2026
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-narrative-text">
+            <p>
+              Boosted foot traffic and event awareness among international tourists and local trendsetters using viral <strong class="font-semibold text-[#0D0F17]">Meta Reels &amp; Video Campaigns</strong> for Phuket's landmark container night market.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 8: Amazing Canoeing -->
+      <div class="exp-card-item" data-category="tourism">
+        <div class="exp-card-inner">
+          <div class="exp-card-header">
+            <div class="exp-client-brand-top">
+              <div class="exp-client-badge-frame" title="Amazing Canoeing">
+                <img src="assets/images/clients/amazing-canoeing.png" alt="Amazing Canoeing">
+              </div>
+              <div class="exp-client-brand-info">
+                <h3 class="exp-client-brand-name font-bricolage">Amazing Canoeing</h3>
+                <span class="exp-client-industry-pill font-bricolage">Phang Nga Bay Sea Canoe &amp; Eco Tours</span>
+              </div>
+            </div>
+            <div class="exp-role-heading font-bricolage">Tourism Funnel &amp; Direct Booking Marketer</div>
+            <div class="exp-meta-bar">
+              <span class="exp-company-name">Digital Agency Phuket</span>
+              <div class="exp-meta-pills">
+                <span class="exp-meta-tag">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  Phuket &amp; Phang Nga
+                </span>
+                <span class="exp-meta-tag">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  2026
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-narrative-text">
+            <p>
+              Drove direct tour bookings for Phang Nga Bay canoe and island excursions with high-converting <strong class="font-semibold text-[#0D0F17]">Meta Dynamic Ads</strong> and direct WhatsApp/LINE booking assistance funnels, reducing OTA commission dependency.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 9: คุณแม่จู้ (Khun Mae Ju) -->
+      <div class="exp-card-item" data-category="tourism">
+        <div class="exp-card-inner">
+          <div class="exp-card-header">
+            <div class="exp-client-brand-top">
+              <div class="exp-client-badge-frame warm-frame" title="คุณแม่จู้ (Khun Mae Ju)">
+                <img src="assets/images/clients/khun-mae-ju.jpg" alt="คุณแม่จู้ (Khun Mae Ju)">
+              </div>
+              <div class="exp-client-brand-info">
+                <h3 class="exp-client-brand-name font-bricolage">คุณแม่จู้ (Khun Mae Ju)</h3>
+                <span class="exp-client-industry-pill font-bricolage">80-Year Phuket Heritage Souvenirs</span>
+              </div>
+            </div>
+            <div class="exp-role-heading font-bricolage">E-Commerce &amp; LINE OA Sales Strategist</div>
+            <div class="exp-meta-bar">
+              <span class="exp-company-name">Digital Agency Phuket</span>
+              <div class="exp-meta-pills">
+                <span class="exp-meta-tag">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  Phuket &amp; National
+                </span>
+                <span class="exp-meta-tag">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  2026
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-narrative-text">
+            <p>
+              Built <strong class="font-semibold text-[#0D0F17]">LINE Official Account (OA)</strong> automated sales funnels and seasonal holiday gift campaigns for Phuket's legendary 80-year-old souvenir and Tai Pla curry brand, driving high repeat purchase rates.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    </div>
+  </section>
+
+  <!-- Tools & Capabilities Section (Radial Cluster Design matching helloabdullah.com) -->
+  <section id="tools" class="tools-radial-section">
+    <div class="tools-radial-container">
+      
+      <!-- 1. TOP CLUSTER: AI & Web Development -->
+      <div class="tools-top-cluster">
+        <div class="stack-cluster">
+          <div class="stack-capsule capsule-blue">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            <span>AI &amp; Web Development</span>
+          </div>
+          <div class="stack-icons-dock">
+            <!-- Claude -->
+            <div class="tool-dock-item" title="Claude Code (Ultra)">
+              <svg viewBox="0 0 24 24" fill="#D97706"><path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/></svg>
+              <span class="tooltip">Claude Code (Ultra)</span>
+            </div>
+            <!-- Antigravity / Gemini -->
+            <div class="tool-dock-item" title="Antigravity">
+              <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M12 2C12 7.52 7.52 12 2 12C7.52 12 12 16.48 12 22C12 16.48 16.48 12 22 12C16.48 12 12 7.52 12 2Z"/></svg>
+              <span class="tooltip">Antigravity</span>
+            </div>
+            <!-- Lovable -->
+            <div class="tool-dock-item" title="Lovable">
+              <svg viewBox="0 0 24 24"><path fill="#FF3366" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              <span class="tooltip">Lovable</span>
+            </div>
+            <!-- GitHub -->
+            <div class="tool-dock-item" title="GitHub">
+              <svg viewBox="0 0 24 24" fill="#181717"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              <span class="tooltip">GitHub</span>
+            </div>
+            <!-- Tailwind CSS -->
+            <div class="tool-dock-item" title="Tailwind CSS">
+              <svg viewBox="0 0 24 24" fill="#06B6D4"><path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z"/></svg>
+              <span class="tooltip">Tailwind CSS</span>
+            </div>
+            <!-- HTML5 / PHP -->
+            <div class="tool-dock-item" title="HTML5 &amp; PHP">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>
+              <span class="tooltip">HTML5 &amp; PHP/MySQL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. MIDDLE ROW: LEFT CLUSTER + CENTER TEXT + RIGHT CLUSTER -->
+      <div class="tools-middle-row">
+        
+        <!-- Left Cluster: Paid Ads & Growth -->
+        <div class="tools-stack-left">
+          <div class="stack-cluster">
+            <div class="stack-capsule capsule-green">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" y1="12" x2="8" y2="12"></line></svg>
+              <span>Paid Ads &amp; Growth</span>
+            </div>
+            <div class="stack-icons-dock">
+              <!-- Google Ads -->
+              <div class="tool-dock-item" title="Google Ads">
+                <svg viewBox="0 0 40 40">
+                  <path fill="#4285F4" d="M12.5 7.5L25.5 30H14.5L1.5 7.5H12.5Z"/>
+                  <path fill="#34A853" d="M38.5 7.5L25.5 30H14.5L27.5 7.5H38.5Z"/>
+                  <circle fill="#FBBC05" cx="7" cy="30" r="5.5"/>
+                </svg>
+                <span class="tooltip">Google Ads (Search &amp; P-Max)</span>
+              </div>
+              <!-- Meta Ads -->
+              <div class="tool-dock-item" title="Meta Ads Manager">
+                <svg viewBox="0 0 24 24" fill="#0081FB">
+                  <path d="M12 2C6.48 2 2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V14.7H7.5V12H10V9.8c0-2.47 1.48-3.83 3.73-3.83 1.08 0 2.22.19 2.22.19v2.44h-1.25c-1.23 0-1.61.76-1.61 1.54V12h2.75l-.44 2.7H13.1v7.1c4.56-.93 8-4.96 8-9.8 0-5.52-4.48-10-10-10z"/>
+                </svg>
+                <span class="tooltip">Meta Ads (Andromeda)</span>
+              </div>
+              <!-- CAPI -->
+              <div class="tool-dock-item" title="Conversion API (CAPI)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+                  <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                  <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                  <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                  <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                </svg>
+                <span class="tooltip">Meta CAPI &amp; Lead Forms</span>
+              </div>
+              <!-- Google Business Profile -->
+              <div class="tool-dock-item" title="Google Business Profile">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span class="tooltip">Google Business Profile</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Center Title & Subtitle -->
+        <div class="tools-center-text">
+          <h2 class="tools-main-title font-bricolage">Tools &amp; Capabilities</h2>
+          <p class="tools-main-desc">
+            A mix of tools I use to generate ideas, research, create, design, and build faster.
+          </p>
+        </div>
+
+        <!-- Right Cluster: Automation & Workflows -->
+        <div class="tools-stack-right">
+          <div class="stack-cluster">
+            <div class="stack-capsule capsule-purple">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+              <span>Automation &amp; Workflows</span>
+            </div>
+            <div class="stack-icons-dock">
+              <!-- LINE OA -->
+              <div class="tool-dock-item" title="LINE Official Account">
+                <svg viewBox="0 0 24 24" fill="#06C755">
+                  <path d="M19.365 9.863c0-3.99-4.24-7.23-9.45-7.23-5.21 0-9.45 3.24-9.45 7.23 0 3.57 3.36 6.57 7.9 7.12.31.07.73.21.84.48.09.24.06.61.03.85-.05.34-.23 1.34-.26 1.54-.08.48.18.47.38.33.24-.16 2.87-1.74 3.92-2.44.27-.18.52-.27.81-.27 3.03 0 5.28-2.61 5.28-5.61z"/>
+                </svg>
+                <span class="tooltip">LINE Official Account</span>
+              </div>
+              <!-- Make / Integromat -->
+              <div class="tool-dock-item" title="Make.com">
+                <svg viewBox="0 0 24 24" fill="#6D28D9">
+                  <polygon points="12,2 21,7 21,17 12,22 3,17 3,7" stroke="#6D28D9" stroke-width="1.5" fill="none"/>
+                  <circle cx="12" cy="12" r="4" fill="#6D28D9"/>
+                </svg>
+                <span class="tooltip">Make.com</span>
+              </div>
+              <!-- ChatGPT -->
+              <div class="tool-dock-item" title="ChatGPT">
+                <svg viewBox="0 0 24 24" fill="#10A37F">
+                  <path d="M22.28 9.87c-.24-2.18-1.55-4.04-3.48-4.94A6.19 6.19 0 0 0 7.8 3.51a6.22 6.22 0 0 0-4.99 3.05 6.2 6.2 0 0 0-.61 5.8 6.2 6.2 0 0 0 1.95 5.56 6.2 6.2 0 0 0 10.99 1.43 6.17 6.17 0 0 0 4.99-3.04 6.22 6.22 0 0 0 2.15-6.44zM12 13.8l-2.6-1.5 2.6-1.5 2.6 1.5-2.6 1.5z"/>
+                </svg>
+                <span class="tooltip">ChatGPT Ads &amp; Vision</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 3. BOTTOM CLUSTER: Creative & Media Production -->
+      <div class="tools-bottom-cluster">
+        <div class="stack-cluster">
+          <div class="stack-capsule capsule-amber">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+            <span>Creative &amp; Media Production</span>
+          </div>
+          <div class="stack-icons-dock">
+            <!-- CapCut Pro -->
+            <div class="tool-dock-item" title="CapCut Pro">
+              <svg viewBox="0 0 24 24" fill="#0D0F17">
+                <path d="M4 6l8 6-8 6V6zm16 0l-8 6 8 6V6z"/>
+              </svg>
+              <span class="tooltip">CapCut Pro (Video)</span>
+            </div>
+            <!-- Canva / Design -->
+            <div class="tool-dock-item" title="Canva Pro">
+              <svg viewBox="0 0 24 24" fill="#00C4CC">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5c1.88 0 3.51-1.04 4.36-2.58l-1.74-.98C14.18 14.15 13.17 15 12 15c-1.66 0-3-1.34-3-3s1.34-3 3-3c1.17 0 2.18.85 2.62 1.56l1.74-.98C15.51 8.04 13.88 7 12 7z" fill="white"/>
+              </svg>
+              <span class="tooltip">Canva Pro</span>
+            </div>
+            <!-- Looker Studio -->
+            <div class="tool-dock-item" title="Looker Studio">
+              <svg viewBox="0 0 24 24" fill="#1A73E8">
+                <rect x="4" y="12" width="3" height="8" rx="1.5"/>
+                <rect x="10.5" y="8" width="3" height="12" rx="1.5"/>
+                <rect x="17" y="4" width="3" height="16" rx="1.5"/>
+              </svg>
+              <span class="tooltip">Looker Studio (Reporting)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Academic Journey Section (With Real Official Institution Logos) -->
+  <section id="academy" class="experience-section">
+    <div class="section-header">
+      <h2 class="section-title font-bricolage">Academic Journey</h2>
+      <p class="section-subtitle">Education in digital technology, information systems, and business management.</p>
+    </div>
+
+    <div class="academy-grid">
+      <!-- RMUTP -->
+      <div class="academy-card">
+        <div class="academy-logo-wrap">
+          <img src="assets/images/academy/rmutp.jpg" alt="มหาวิทยาลัยเทคโนโลยีราชมงคลพระนคร (RMUTP)" class="academy-logo-img" style="object-fit: cover; object-position: center;">
+        </div>
+        <div class="academy-details">
+          <h4 class="font-bricolage">มหาวิทยาลัยเทคโนโลยีราชมงคลพระนคร (RMUTP)</h4>
+          <p>ปริญญาตรี: สาขาเทคโนโลยีดิจิทัลและนวัตกรรม คณะบริหารธุรกิจ</p>
+          <div class="academy-year">สำเร็จการศึกษา 2569</div>
+        </div>
+      </div>
+
+      <!-- Phuket Vocational College -->
+      <div class="academy-card">
+        <div class="academy-logo-wrap">
+          <img src="assets/images/academy/pvc.png" alt="วิทยาลัยอาชีวศึกษาภูเก็ต (PVC)" class="academy-logo-img" style="object-fit: contain; padding: 4px;">
+        </div>
+        <div class="academy-details">
+          <h4 class="font-bricolage">วิทยาลัยอาชีวศึกษาภูเก็ต (PVC)</h4>
+          <p>ปวส. เทคโนโลยีธุรกิจดิจิทัล / ปวช. คอมพิวเตอร์ธุรกิจ</p>
+          <div class="academy-year" style="color: #64748B;">ภูเก็ต (2565 &amp; 2567)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Infinite Text Ticker Marquee (Right Before Footer, exact helloabdullah.com style) -->
+  <div class="ticker-banner-container">
+    <div class="ticker-fade-left"></div>
+    <div class="ticker-fade-right"></div>
+    <div class="ticker-track">
+      <!-- Set 1 -->
+      
+        <div class="ticker-item">
+          <span class="ticker-word">Deep Research</span>
+          <svg class="ticker-star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0L9.8 6.2L16 8L9.8 9.8L8 16L6.2 9.8L0 8L6.2 6.2L8 0Z"></path></svg>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-word">Coffee</span>
+          <svg class="ticker-star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0L9.8 6.2L16 8L9.8 9.8L8 16L6.2 9.8L0 8L6.2 6.2L8 0Z"></path></svg>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-word">Flow State</span>
+          <svg class="ticker-star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0L9.8 6.2L16 8L9.8 9.8L8 16L6.2 9.8L0 8L6.2 6.2L8 0Z"></path></svg>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-word">Learning Every Day</span>
+          <svg class="ticker-star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0L9.8 6.2L16 8L9.8 9.8L8 16L6.2 9.8L0 8L6.2 6.2L8 0Z"></path></svg>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-word">Exploring AI</span>
+          <svg class="ticker-star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0L9.8 6.2L16 8L9.8 9.8L8 16L6.2 9.8L0 8L6.2 6.2L8 0Z"></path></svg>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-word">Staying Curious</span>
+          <svg class="ticker-star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0L9.8 6.2L16 8L9.8 9.8L8 16L6.2 9.8L0 8L6.2 6.2L8 0Z"></path></svg>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-word">Vibe Coding</span>
+          <svg class="ticker-star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0L9.8 6.2L16 8L9.8 9.8L8 16L6.2 9.8L0 8L6.2 6.2L8 0Z"></path></svg>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-word">Fast Execution</span>
+          <svg class="ticker-star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0L9.8 6.2L16 8L9.8 9.8L8 16L6.2 9.8L0 8L6.2 6.2L8 0Z"></path></svg>
+        </div>
+      <!-- Set 2 (Seamless loop duplicate) -->
+      
+        <div class="ticker-item">
+          <span class="ticker-word">Deep Research</span>
+          <svg class="ticker-star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0L9.8 6.2L16 8L9.8 9.8L8 16L6.2 9.8L0 8L6.2 6.2L8 0Z"></path></svg>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-word">Coffee</span>
+          <svg class="ticker-star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0L9.8 6.2L16 8L9.8 9.8L8 16L6.2 9.8L0 8L6.2 6.2L8 0Z"></path></svg>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-word">Flow State</span>
+          <svg class="ticker-star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0L9.8 6.2L16 8L9.8 9.8L8 16L6.2 9.8L0 8L6.2 6.2L8 0Z"></path></svg>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-word">Learning Every Day</span>
+          <svg class="ticker-star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0L9.8 6.2L16 8L9.8 9.8L8 16L6.2 9.8L0 8L6.2 6.2L8 0Z"></path></svg>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-word">Exploring AI</span>
+          <svg class="ticker-star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0L9.8 6.2L16 8L9.8 9.8L8 16L6.2 9.8L0 8L6.2 6.2L8 0Z"></path></svg>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-word">Staying Curious</span>
+          <svg class="ticker-star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0L9.8 6.2L16 8L9.8 9.8L8 16L6.2 9.8L0 8L6.2 6.2L8 0Z"></path></svg>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-word">Vibe Coding</span>
+          <svg class="ticker-star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0L9.8 6.2L16 8L9.8 9.8L8 16L6.2 9.8L0 8L6.2 6.2L8 0Z"></path></svg>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-word">Fast Execution</span>
+          <svg class="ticker-star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0L9.8 6.2L16 8L9.8 9.8L8 16L6.2 9.8L0 8L6.2 6.2L8 0Z"></path></svg>
+        </div>
+    </div>
+  </div>
+
+  <!-- Interactive Footer with Direct Contact Channels -->
+  <footer id="contact" class="footer">
+    <div style="max-width: 760px; margin: 0 auto;">
+      <h2 class="footer-title font-bricolage">Good ideas. Fast execution. Ready to build.</h2>
+      <p class="footer-sub">
+        พร้อมร่วมงานและขับเคลื่อนผลลัพธ์ให้องค์กรของคุณ ติดต่อผมได้โดยตรงผ่านช่องทางด้านล่างครับ
+      </p>
+
+      <!-- Contact Buttons: Direct Email, LINE, Phone -->
+      <div class="contact-buttons">
+        
+        <!-- Gmail Button: Opens mail composition immediately -->
+        <a href="mailto:amornpop.suetong@gmail.com" class="contact-btn" id="btnGmail" title="คลิกเพื่อส่งอีเมลทันที">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <span>amornpop.suetong@gmail.com</span>
+        </a>
+
+        <!-- LINE Button: Official LINE logo, opens LINE chat immediately -->
+        <a href="https://line.me/ti/p/1btK0FpReg" target="_blank" rel="noopener noreferrer" class="contact-btn" id="btnLine" title="คลิกเพื่อแชทผ่าน LINE ทันที">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <rect width="24" height="24" rx="5.5" fill="#06C755"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.5 10.75c0-3.728-3.358-6.75-7.5-6.75s-7.5 3.022-7.5 6.75c0 3.342 2.656 6.136 6.25 6.653.243.053.573.16.657.368.075.186.049.478.024.666-.039.27-.18 1.057-.206 1.21-.063.376.14.37.298.26.189-.126 2.261-1.371 3.088-1.923.213-.142.41-.212.639-.212 2.386 0 4.16-2.056 4.16-4.422z" fill="#FFFFFF"/>
+            <path d="M9.1 12.67h-1.1V9.5h.35v2.85h.75v.32zm.98 0h-.35V9.5h.35v3.17zm1.95 0h-.35l-.89-1.58v1.58h-.35V9.5h.35l.89 1.58V9.5h.35v3.17zm1.65-.89h-.85v.6h.98v.29h-1.33V9.5h1.31v.29h-.96v.56h.85v.27z" fill="#06C755"/>
+          </svg>
+          <span>LINE</span>
+        </a>
+
+        <!-- Phone Button -->
+        <a href="tel:0992310047" class="contact-btn" id="btnPhone" title="โทรติดต่อ 099-231-0047">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <span>099-231-0047</span>
+        </a>
+
+      </div>
+
+      <div class="footer-bottom">
+        &copy; 2026 Amornpop Suetong (บั๊ค) &bull; Digital Marketing Specialist &amp; AI Web Builder
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Element -->
+  <div class="toast" id="toastBox">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    <span id="toastMsg">Copied to clipboard!</span>
+  </div>
+
+  <!-- Interactive Cursor & Clipboard Scripts -->
+  <script>
+    // Spotlight follower
+    document.addEventListener('mousemove', function(e) {
+      document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+      document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+    });
+
+    // Copy to clipboard helper
+    function copyText(e, text, message) {
+      e.preventDefault();
+      e.stopPropagation();
+      navigator.clipboard.writeText(text).then(function() {
+        showToast(message || 'Copied to clipboard!');
+      }).catch(function() {
+        showToast('Copied: ' + text);
+      });
+    }
+
+    // Toast trigger
+    let toastTimeout;
+    function showToast(msg) {
+      const toast = document.getElementById('toastBox');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(function() {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+  
+    // Smooth Anchor Scroll with Exact Sticky Header Offset
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        const hash = this.getAttribute('href');
+        if (!hash || hash === '#') return;
+        const target = document.querySelector(hash);
+        if (target) {
+          e.preventDefault();
+          const navOffset = 86;
+          const targetY = target.getBoundingClientRect().top + window.pageYOffset - navOffset;
+          window.scrollTo({
+            top: Math.max(0, targetY),
+            behavior: 'smooth'
+          });
+          if (history.pushState) {
+            history.pushState(null, null, hash);
+          }
+        }
+      });
+    });
+
+    // Active Nav Pill Scroll Spy
+    const sections = ['projects', 'experience', 'tools', 'academy'];
+    const navMap = {
+      'projects': document.getElementById('navPillProjects'),
+      'experience': document.getElementById('navPillExperience'),
+      'tools': document.getElementById('navPillTools'),
+      'academy': document.getElementById('navPillAcademy')
+    };
+
+    window.addEventListener('scroll', function() {
+      let current = '';
+      const scrollPos = window.scrollY + 110;
+      sections.forEach(function(id) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= scrollPos) {
+          current = id;
+        }
+      });
+      sections.forEach(function(id) {
+        if (navMap[id]) {
+          if (id === current) {
+            navMap[id].classList.add('active');
+          } else {
+            navMap[id].classList.remove('active');
+          }
+        }
+      });
+    });
+
+    // Filter Experience Cards
+    function filterExp(e, category) {
+      document.querySelectorAll('.exp-filter-btn').forEach(function(btn) {
+        btn.classList.remove('active');
+      });
+      e.target.classList.add('active');
+      const cards = document.querySelectorAll('.exp-card-item');
+      cards.forEach(function(card) {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Floating Chat Popup Toggle
+    function toggleChatPopup(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      const popup = document.getElementById('chatPopupCard');
+      if (popup) {
+        popup.classList.toggle('open');
+      }
+    }
+
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+      const popup = document.getElementById('chatPopupCard');
+      const trigger = document.getElementById('floatingChatBtn');
+      if (popup && popup.classList.contains('open')) {
+        if (!popup.contains(e.target) && !trigger.contains(e.target)) {
+          popup.classList.remove('open');
+        }
+      }
+    });
+</script>
+
+
+  <!-- Floating Chat Trigger Button (Exact match to uploaded image) -->
+  <button type="button" class="floating-chat-trigger" id="floatingChatBtn" onclick="toggleChatPopup(event)" aria-label="Open Direct Contact">
+    <svg viewBox="0 0 24 24" fill="none">
+      <path d="M12 3C6.477 3 2 6.92 2 11.75c0 2.76 1.48 5.22 3.77 6.78-.17 1.25-.8 2.87-1.78 3.86a.5.5 0 0 0 .44.82c2.56-.2 4.67-1.16 6.06-2.12.5.07 1.01.11 1.51.11 5.523 0 10-3.92 10-8.75S17.523 3 12 3z" fill="#FFFFFF"/>
+      <path d="M8 10h8M8 13.5h5" stroke="#0D0F17" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <!-- Floating Contact Card Popup -->
+  <div class="chat-popup-card" id="chatPopupCard">
+    <div class="chat-popup-header">
+      <div class="chat-header-identity">
+        <span class="chat-status-pulse"></span>
+        <span class="chat-header-name font-bricolage">Amornpop &quot;Bug&quot;</span>
+      </div>
+      <button type="button" class="chat-close-btn" onclick="toggleChatPopup(event)" aria-label="Close Chat Popup">&times;</button>
+    </div>
+    <div class="chat-popup-body">
+      <p class="chat-greeting">
+        พร้อมร่วมงานและพูดคุยเรื่องงานแอดและการพัฒนาเว็บไซต์ ทักคุยกันได้เลยครับ!
+      </p>
+
+      <!-- LINE Direct -->
+      <a href="https://line.me/ti/p/1btK0FpReg" target="_blank" rel="noopener noreferrer" class="chat-channel-link line-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <rect width="24" height="24" rx="5.5" fill="#06C755"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M19.5 10.75c0-3.728-3.358-6.75-7.5-6.75s-7.5 3.022-7.5 6.75c0 3.342 2.656 6.136 6.25 6.653.243.053.573.16.657.368.075.186.049.478.024.666-.039.27-.18 1.057-.206 1.21-.063.376.14.37.298.26.189-.126 2.261-1.371 3.088-1.923.213-.142.41-.212.639-.212 2.386 0 4.16-2.056 4.16-4.422z" fill="#FFFFFF"/>
+          <path d="M9.1 12.67h-1.1V9.5h.35v2.85h.75v.32zm.98 0h-.35V9.5h.35v3.17zm1.95 0h-.35l-.89-1.58v1.58h-.35V9.5h.35l.89 1.58V9.5h.35v3.17zm1.65-.89h-.85v.6h.98v.29h-1.33V9.5h1.31v.29h-.96v.56h.85v.27z" fill="#06C755"/>
+        </svg>
+        <div>
+          <span class="chat-channel-title">LINE</span>
+          <span class="chat-channel-sub">คลิกเพื่อแอดเพื่อนและเริ่มแชททันที</span>
+        </div>
+      </a>
+
+      <!-- Gmail Direct -->
+      <a href="mailto:amornpop.suetong@gmail.com" class="chat-channel-link email-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <div>
+          <span class="chat-channel-title">ส่งอีเมล (Gmail)</span>
+          <span class="chat-channel-sub">amornpop.suetong@gmail.com</span>
+        </div>
+      </a>
+
+      <!-- Phone Direct -->
+      <a href="tel:0992310047" class="chat-channel-link" style="background: #F8FAFC; border-color: #E2E8F0; color: #0D0F17;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        <div>
+          <span class="chat-channel-title">โทรติดต่อโดยตรง</span>
+          <span class="chat-channel-sub">099-231-0047</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>
